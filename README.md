@@ -25,12 +25,13 @@
     		* `--root [root_dir]` -- specify root directory containing salesforce files (defaults to `src`
     		* `--fullLog` -- outputs the full deployment log from salesforce (JSON)
     		* `--checkInterval [ms]` -- how often to check for the deployment result (defaults to 2000)
-2. Add an **npm** task with the following command: `install git+https://bitbucket.org/silverline/spm`
-3. Add a **script** or **node.js** task to execute the `spm` command
+2. Create a **Source Code Checkout** task if it doesn't exist and set up the repository you'll be deploying
+3. Add an **npm** task with the following command: `install git+https://bitbucket.org/silverline/spm`
+4. Add a **script** or **node.js** task to execute the `spm` command
 	* Example for **script** task: `./node_modules/spm/bin/spm-cli.js deploy --username ${bamboo.username} --password ${bamboo.password} --endpointUrl ${bamboo.endpointUrl} ${bamboo.deployOptions}`
 	* Example for **node.js** task:
 		* Script: `node_modules/spm/bin/spm-cli.js`
 		* Arguments: `deploy --username ${bamboo.username} --password ${bamboo.password} --endpointUrl ${bamboo.endpointUrl} ${bamboo.deployOptions}`
-4. If setting up tests, add a **JUnit Parser** task to parse the junit file specified in the spm command
+5. If setting up tests, add a **JUnit Parser** task to parse the junit file specified in the spm command
 	* Example: `**/tests.xml` (for when spm was run with --junit tests.xml)
 
