@@ -1,0 +1,23 @@
+{
+  "name": "force-meta",
+  "version": "1.0.0",
+  "description": "",
+  "main": "methods.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "spm":"bin/spm-cli.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "html-entities": "^1.2.0",
+    "jszip": "^2.5.0",
+    "object-assign": "^4.0.1",
+    "readdirp": "^2.0.0",
+    "request": "^2.67.0",
+    "xml2js": "^0.4.15"
+  }
+}
