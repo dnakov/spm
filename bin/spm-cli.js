@@ -43,11 +43,10 @@ spm = require('../methods.js')
     	})
     })
 
-    .command('deploy')
   
   program    
+    .command('deploy')
     .description('asks for what to deploy, where and then deploys')
-		.option('-m, --manual', 'no prompts, expects options to be passed in')
     .option('--printPackageXml, --printPackageXml', 'generates a package.xml from existing folders')
     .option('--checkOnly, --checkOnly', 'read sf docs')
     .option('--ignoreWarnings, --ignoreWarnings', 'read sf docs')
@@ -63,15 +62,15 @@ spm = require('../methods.js')
     .option('--useDefaultMetadata, --useDefaultMetadata', 'doesnt ask the server for metadata')
     .option('--usePackageXml, --usePackageXml [usePackageXml]', 'specify existing package.xml file [usePackageXml]')
     .option('--apiVersion, --apiVersion [apiVersion]', 'api version', '33.0')
-    .option('-u, --username [username]', 'username', '')
-    .option('-p, --password [password]', 'password', '')
-    .option('-e, --endpointUrl [endpointUrl]', 'login url', 'https://login.salesforce.com')
-    .option('-f, --filter [value]', 'regex filter for files to deploy')
-    .option('-r, --root [root]', 'regex filter for files to deploy', 'src')	
+    .option('-u, --username <username>', 'username', '')
+    .option('-p, --password <password>', 'password', '')
+    .option('-e, --endpointUrl <endpointUrl>', 'login url', 'https://login.salesforce.com')
+    .option('-f, --filter <value>', 'regex filter for files to deploy')
+    .option('-r, --root <root>', 'regex filter for files to deploy', 'src')	
     .option('-j, --junit [junit]', 'junit results filename out')	
     .option('--fullLog', '--fullLog', 'output the complete deployment log')
     .option('--checkInterval, --checkInterval <checkInterval>', 'deploy check interval', 2000)
-    .action(function(act, op) {
+    .action(function(op) {
       if(op.junit === true) op.junit = 'junit.xml'
       var statusInterval
       var options = op.opts()
