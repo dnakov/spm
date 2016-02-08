@@ -33,7 +33,6 @@ var xslt = require('./xslt.js')
 function getDeployOpts(o) {
     var opts = {}
     Object.keys(o).map(function(key) {
-      console.log(key)
       if(o[key] !== undefined && allowedDeployOpts.indexOf(key) !== -1) {
         opts[key] = o[key]
       }

@@ -87,6 +87,7 @@ spm = require('../methods.js')
                   fs.writeFileSync('/tmp/spm.zip', zip);
                   if(er) return xit(er)
                     options.options = options;
+                  console.log('Deploying...')
                     spm.deploy(options, zip.toString('base64'), function(er, res) {
                       if(er) return xit(er)
                         statusInterval = setInterval(function() {
