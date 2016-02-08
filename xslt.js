@@ -78,7 +78,7 @@ function removeRoot(zipBuffer, root) {
 	} else {
 		root = zip.file(/package\.xml/).length > 0 && zip.file(/package\.xml/)[0].name.replace('package.xml', '')
 	}
-	console.log('found ' + Object.keys(zip.files).length + ' files')
+//	console.log('found ' + Object.keys(zip.files).length + ' files')
 	root && Object.keys(zip.files).map(function(key) {
 		if(root.indexOf(key) === 0) delete zip.files[key]
 
@@ -92,8 +92,8 @@ function removeRoot(zipBuffer, root) {
 		if(newKey != key) delete zip.files[key]
 	})
 	
-	console.log(Object.keys(zip.files))
-	console.log('ended up with ' + Object.keys(zip.files).length + ' files')
+//	console.log(Object.keys(zip.files))
+//	console.log('ended up with ' + Object.keys(zip.files).length + ' files')
 	if(convert) return zip.generate({type: 'nodebuffer'})
 
 	return zip

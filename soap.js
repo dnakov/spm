@@ -38,7 +38,7 @@ SOAP.prototype.invoke = function(method, args, callback) {
   var message = {};
   message[method] = args;
   var body = this._createEnvelope(message);
-console.log(body)
+//console.log(body)
   return request({
     method: 'POST',
     url: this.endpointUrl,
