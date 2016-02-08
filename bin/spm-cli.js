@@ -69,13 +69,14 @@ spm = require('../methods.js')
     .option('-f, --filter [value]', 'regex filter for files to deploy')
     .option('-r, --root [root]', 'regex filter for files to deploy', 'src')	
     .option('-j, --junit [junit]', 'junit results filename out')	
-  
+    .option('--fullLog', '--fullLog', 'output the complete deployment log')
     .option('--checkInterval, --checkInterval <checkInterval>', 'deploy check interval', 2000)
     .action(function(act, op) {
       if(op.junit === true) op.junit = 'junit.xml'
       var statusInterval
       var options = op.opts()
       spm.login(options, function(er, conn) {
+        op
         if(er) return xit(er)
         options.endpointUrl = conn.result.metadataServerUrl
         options.sessionId = conn.result.sessionId
@@ -83,19 +84,23 @@ spm = require('../methods.js')
           if(er) return xit(er)
             zipLocalFiles(options.root, options.filter, function(er, z) {
               if(er) return xit(er)
+                op
                 spm.transform({ root: options.root, metadataObjects: r.result.metadataObjects, apiVersion: options.apiVersion}, z, function(er, zip) {
                   fs.writeFileSync('/tmp/spm.zip', zip);
                   if(er) return xit(er)
                     options.options = options;
                   console.log('Deploying...')
                     spm.deploy(options, zip.toString('base64'), function(er, res) {
+                      op
                       if(er) return xit(er)
                         statusInterval = setInterval(function() {
                           spm.checkDeployStatus({sessionId: options.sessionId, endpointUrl: options.endpointUrl, options: { checkAsyncStatus: res.result.id, includeDetails: true }}, function(er, r) {
                             if(er || r.result.done === 'true') clearTimeout(statusInterval);
                             if(er) return xit(er)
                               if(r.result.done === 'true') {
-                                  console.dir(r)
+                                console.log(op.fullLog)
+                                if(op.fullLog) console.log(JSON.stringify(r, null, 2))
+
                                   if(op.junit) fs.writeFileSync(op.junit, junit(r.result))    
                                   process.exit(r.result.success !== 'true')
                               }
