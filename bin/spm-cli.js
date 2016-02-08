@@ -67,6 +67,7 @@ spm = require('../methods.js')
     .option('-url, --endpointUrl [endpointUrl]', 'login url', 'https://login.salesforce.com')
     .option('-f, --filter [value]', 'regex filter for files to deploy')
     .option('-r, --root [root]', 'regex filter for files to deploy')	
+    .option('-j, --junit [junit]', 'junit results filename out')	
   
     .option('--checkInterval, --checkInterval <checkInterval>', 'deploy check interval', 2000)
     .action(function(act, op) {
@@ -93,7 +94,7 @@ spm = require('../methods.js')
                             if(er) return xit(er)
                               if(r.result.done === 'true') {
                                   console.dir(r)
-                                  console.log(junit(r.result))    
+                                  if(op.junit) fs.writeFileSync(op.junit, junit(r.result))    
                                   process.exit(r.result.success !== 'true')
                               }
                           })
