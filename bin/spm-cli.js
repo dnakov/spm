@@ -44,6 +44,7 @@ spm = require('../methods.js')
     })
 
     .command('deploy')
+  
   program    
     .description('asks for what to deploy, where and then deploys')
 		.option('-m, --manual', 'no prompts, expects options to be passed in')
@@ -54,8 +55,8 @@ spm = require('../methods.js')
     .option('--purgeOnDelete, --purgeOnDelete', 'read sf docs')
     .option('--rollbackOnError, --rollbackOnError', 'read sf docs')
     .option('--runAllTests, --runAllTests', 'read sf docs')
-    .option('--runTests, --runTests', 'read sf docs')
-    .option('--singlePackage, --singlePackage', 'read sf docs')
+    .option('--runTests, --runTests [runTests]', 'read sf docs', list)
+    .option('--no-singlePackage, --no-singlePackage', 'read sf docs')
     .option('--allowMissingFiles, --allowMissingFiles', 'read sf docs')
     .option('--autoUpdatePackage, --autoUpdatePackage', 'read sf docs')
     .option('--runPackagedTestsOnly, --runPackagedTestsOnly', 'read sf docs')
@@ -64,15 +65,15 @@ spm = require('../methods.js')
     .option('--apiVersion, --apiVersion [apiVersion]', 'api version', '33.0')
     .option('-u, --username [username]', 'username', '')
     .option('-p, --password [password]', 'password', '')
-    .option('-url, --endpointUrl [endpointUrl]', 'login url', 'https://login.salesforce.com')
+    .option('-e, --endpointUrl [endpointUrl]', 'login url', 'https://login.salesforce.com')
     .option('-f, --filter [value]', 'regex filter for files to deploy')
-    .option('-r, --root [root]', 'regex filter for files to deploy')	
+    .option('-r, --root [root]', 'regex filter for files to deploy', 'src')	
     .option('-j, --junit [junit]', 'junit results filename out')	
   
     .option('--checkInterval, --checkInterval <checkInterval>', 'deploy check interval', 2000)
     .action(function(act, op) {
-        var statusInterval
-        console.log(arguments)
+      if(op.junit === true) op.junit = 'junit.xml'
+      var statusInterval
       var options = op.opts()
       spm.login(options, function(er, conn) {
         if(er) return xit(er)
@@ -98,7 +99,7 @@ spm = require('../methods.js')
                                   process.exit(r.result.success !== 'true')
                               }
                           })
-                        }, 1000)
+                        }, op.checkInterval)
                         
                     })
                 })
@@ -145,4 +146,8 @@ function zipLocalFiles(root, fileFilter, callback) {
 function xit(er) {
   console.log(er)
   return process.exit(1)
+}
+
+function list(val) {
+  return val.split(',')
 }
