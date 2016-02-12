@@ -85,7 +85,6 @@ spm = require('../methods.js')
               if(er) return xit(er)
                 op
                 spm.transform({ root: options.root, metadataObjects: r.result.metadataObjects, apiVersion: options.apiVersion}, z, function(er, zip) {
-                  fs.writeFileSync('/tmp/spm.zip', zip);
                   if(er) return xit(er)
                     options.options = options;
                   console.log('Deploying...')
@@ -97,10 +96,10 @@ spm = require('../methods.js')
                             if(er || r.result.done === 'true') clearTimeout(statusInterval);
                             if(er) return xit(er)
                               if(r.result.done === 'true') {
-                                console.log(op.fullLog)
-                                if(op.fullLog) console.log(JSON.stringify(r, null, 2))
-
+                                if(op.fullLog || r.result.success !== 'true') console.log(JSON.stringify(r.result, null, 2))
+                                      
                                   if(op.junit) fs.writeFileSync(op.junit, junit(r.result))    
+                                  console.log(r.result.status)
                                   process.exit(r.result.success !== 'true')
                               }
                           })
