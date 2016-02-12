@@ -71,6 +71,11 @@ module.exports.describeMetadata = function(config, cb) {
 	invoke(getOpts(config, 'describeMetadata', {describeMetadata: { asOfVersion: (config.options && config.options.asOfVersion) || config.apiVersion } }), cb)
 }
 
+module.exports.listMetadata = function(config, cb) {
+	config = getMetadataUrl(config)
+	  invoke(getOpts(config, 'listMetadata', {listMetadata: { queries: config.options.queries, asOfVersion: (config.options && config.options.asOfVersion) || config.apiVersion } }), cb)
+}
+
 module.exports.login = function(config, cb) {
 	var cfg = assign(config, { 
 		xmlns: 'urn:partner.soap.sforce.com',
@@ -80,6 +85,7 @@ module.exports.login = function(config, cb) {
 }
 
 module.exports.retrieve = function(config, cb) {
+  console.log(config)
 	config = getMetadataUrl(config)
 	invoke(getOpts(config, 'retrieve', {retrieve: { retrieveRequest: config.options } }), cb)
 }

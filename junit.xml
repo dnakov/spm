@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="AdminAPI_TEST" time="0.179">
+    <testcase name="AdminAPI_TEST.deleteCampaignSection" time="0.179"/>
+    <testcase name="AdminAPI_TEST.deleteCampaignActivity" time="0.069"/>
+    <testcase name="AdminAPI_TEST.putCampaign" time="0.145"/>
+    <testcase name="AdminAPI_TEST.putCampaignActivity" time="0.079"/>
+    <testcase name="AdminAPI_TEST.putCampaignSection" time="0.08"/>
+    <testcase name="AdminAPI_TEST.putQuestionSet" time="0.148"/>
+  </testsuite>
+  <testsuite name="API_Campaign_TESt" time="0.299">
+    <testcase name="API_Campaign_TESt.testDeleteCampaignActivity" time="0.299"/>
+    <testcase name="API_Campaign_TESt.testGetCampaign" time="0.113"/>
+    <testcase name="API_Campaign_TESt.testGetCampaignActivities" time="0.403"/>
+    <testcase name="API_Campaign_TESt.testPutAndGet" time="0.316"/>
+    <testcase name="API_Campaign_TESt.testPutCampaignActivity" time="0.392"/>
+    <testcase name="API_Campaign_TESt.testPutCampaign" time="0.131"/>
+    <testcase name="API_Campaign_TESt.testSections" time="1.143"/>
+    <testcase name="API_Campaign_TESt.testTeam" time="0.858"/>
+  </testsuite>
+  <testsuite name="API_CampaignProgress_TEST" time="0.149">
+    <testcase name="API_CampaignProgress_TEST.getCampaignProgress" time="0.149"/>
+    <testcase name="API_CampaignProgress_TEST.enrollmentsAndBadges" time="0.543"/>
+    <testcase name="API_CampaignProgress_TEST.requiredVsOptional" time="0.897"/>
+    <testcase name="API_CampaignProgress_TEST.testUserICProgress" time="0.292"/>
+    <testcase name="API_CampaignProgress_TEST.testGetUserFilteredQuestionSets" time="0.356"/>
+  </testsuite>
+  <testsuite name="API_Contactlistview_TEST" time="0.083">
+    <testcase name="API_Contactlistview_TEST.testPutAndGet" time="0.083"/>
+  </testsuite>
+  <testsuite name="API_Event_TEST" time="0.095">
+    <testcase name="API_Event_TEST.testGetEvents" time="0.095"/>
+    <testcase name="API_Event_TEST.testGetEventsForUser" time="0.306"/>
+    <testcase name="API_Event_TEST.testGetAndSignupAppointments" time="0.696"/>
+  </testsuite>
+  <testsuite name="API_Groups_TEST" time="0.835">
+    <testcase name="API_Groups_TEST.testGroupsApi" time="0.835"/>
+  </testsuite>
+  <testsuite name="API_Human_TEST" time="0.041">
+    <testcase name="API_Human_TEST.pageController" time="0.041"/>
+    <testcase name="API_Human_TEST.testAuthenticate" time="0.493"/>
+    <testcase name="API_Human_TEST.testBatchWeight" time="0.711"/>
+    <testcase name="API_Human_TEST.testGetPublicToken" time="0.583"/>
+  </testsuite>
+  <testsuite name="API_Metrics_TEST" time="0.288">
+    <testcase name="API_Metrics_TEST.testPutAndGet" time="0.288"/>
+  </testsuite>
+  <testsuite name="API_Notification_TEST" time="1.848">
+    <testcase name="API_Notification_TEST.testGetNotifications" time="1.848"/>
+  </testsuite>
+  <testsuite name="API_PortalConfig_TEST" time="0.988">
+    <testcase name="API_PortalConfig_TEST.testGet" time="0.988"/>
+  </testsuite>
+  <testsuite name="API_PortalUsers_TEST" time="0.581">
+    <testcase name="API_PortalUsers_TEST.testCreate" time="0.581"/>
+    <testcase name="API_PortalUsers_TEST.testGet" time="0.306"/>
+  </testsuite>
+  <testsuite name="API_QuestionSet_TEST" time="0.247">
+    <testcase name="API_QuestionSet_TEST.testGetFilteredQuestionSet" time="0.247"/>
+    <testcase name="API_QuestionSet_TEST.testPutAndGet" time="0.108"/>
+    <testcase name="API_QuestionSet_TEST.testGetUserFilteredQuestionSets" time="0.28"/>
+  </testsuite>
+  <testsuite name="API_UserResponse_TEST" time="0.36">
+    <testcase name="API_UserResponse_TEST.testGet" time="0.36"/>
+    <testcase name="API_UserResponse_TEST.testGetForMetric" time="2.016"/>
+    <testcase name="API_UserResponse_TEST.testGetFromMetricTarget" time="0.342"/>
+    <testcase name="API_UserResponse_TEST.testSave" time="1.081"/>
+    <testcase name="API_UserResponse_TEST.testSubmit" time="1.495"/>
+  </testsuite>
+  <testsuite name="API_Users_TEST" time="0.981">
+    <testcase name="API_Users_TEST.testGetPortalUser" time="0.981"/>
+    <testcase name="API_Users_TEST.testPutAndGet" time="0.817"/>
+    <testcase name="API_Users_TEST.testResetPasswordEmailSent" time="0.917"/>
+  </testsuite>
+  <testsuite name="BatchDeactivateContacts_TEST" time="1.455">
+    <testcase name="BatchDeactivateContacts_TEST.testContactsDeactivated" time="1.455"/>
+  </testsuite>
+  <testsuite name="BatchListViewGroups_TEST" time="0.352">
+    <testcase name="BatchListViewGroups_TEST.testGroupsCreated" time="0.352"/>
+  </testsuite>
+  <testsuite name="BatchDeactivateUsers_TEST" time="0.545">
+    <testcase name="BatchDeactivateUsers_TEST.testUsersDeactivated" time="0.545"/>
+  </testsuite>
+  <testsuite name="ChatterMessageHandler_TEST" time="1.32">
+    <testcase name="ChatterMessageHandler_TEST.testChatterMessageTrigger" time="1.32"/>
+  </testsuite>
+  <testsuite name="CommunitiesLoginControllerTest" time="0.081">
+    <testcase name="CommunitiesLoginControllerTest.testCommunitiesLoginController" time="0.081"/>
+  </testsuite>
+  <testsuite name="ContactHandler_TESt" time="0.689">
+    <testcase name="ContactHandler_TESt.testActivateToggle" time="0.689"/>
+    <testcase name="ContactHandler_TESt.testClearInitialPassword" time="0.778"/>
+    <testcase name="ContactHandler_TESt.testRelations" time="0.495"/>
+  </testsuite>
+  <testsuite name="Convert_TEST" time="0.137">
+    <testcase name="Convert_TEST.testConversions" time="0.137"/>
+  </testsuite>
+  <testsuite name="FeedItemHandler_TEST" time="0.684">
+    <testcase name="FeedItemHandler_TEST.testFeedItem" time="0.684"/>
+  </testsuite>
+  <testsuite name="Loggly_Test" time="0.08">
+    <testcase name="Loggly_Test.batch_logs_false_test" time="0.08"/>
+    <testcase name="Loggly_Test.gifUrl_quad_test" time="0.187"/>
+    <testcase name="Loggly_Test.gifUrl_double_test" time="0.211"/>
+    <testcase name="Loggly_Test.endpoint_test" time="0.147"/>
+    <testcase name="Loggly_Test.batch_logs_true_test" time="0.081"/>
+    <testcase name="Loggly_Test.batch_logs_null_test" time="0.089"/>
+    <testcase name="Loggly_Test.gifUrl_triple_test" time="0.19"/>
+    <testcase name="Loggly_Test.include_hostname_override_test" time="0.144"/>
+    <testcase name="Loggly_Test.include_hostname_true_test" time="0.123"/>
+    <testcase name="Loggly_Test.include_userinfo_false_test" time="0.122"/>
+    <testcase name="Loggly_Test.include_userinfo_null_test" time="0.132"/>
+    <testcase name="Loggly_Test.hostname_test" time="0.277"/>
+    <testcase name="Loggly_Test.include_hostname_false_test" time="0.145"/>
+    <testcase name="Loggly_Test.include_hostname_null_test" time="0.133"/>
+    <testcase name="Loggly_Test.log_constructor_blank_test" time="0.066"/>
+    <testcase name="Loggly_Test.logCache_flushLogs_test" time="0.123"/>
+    <testcase name="Loggly_Test.logCache_flushLogs_multi_test" time="0.129"/>
+    <testcase name="Loggly_Test.logCache_constructor_log_test" time="0.063"/>
+    <testcase name="Loggly_Test.logCache_constructor_empty_test" time="0.077"/>
+    <testcase name="Loggly_Test.include_userinfo_override_test" time="0.142"/>
+    <testcase name="Loggly_Test.include_userinfo_true_test" time="0.155"/>
+    <testcase name="Loggly_Test.logCache_add_test" time="0.078"/>
+    <testcase name="Loggly_Test.logCache_constructor_list_test" time="0.066"/>
+    <testcase name="Loggly_Test.loggly_add_double_test" time="0.076"/>
+    <testcase name="Loggly_Test.log_toJSONString_test" time="0.157"/>
+    <testcase name="Loggly_Test.log_toJSONString_noLevel_test" time="0.146"/>
+    <testcase name="Loggly_Test.log_toJSONString_noHostname_test" time="0.08"/>
+    <testcase name="Loggly_Test.log_toJSONString_noHostname_noLevel_test" time="0.075"/>
+    <testcase name="Loggly_Test.log_constructor_triple_test" time="0.086"/>
+    <testcase name="Loggly_Test.log_constructor_single_test" time="0.078"/>
+    <testcase name="Loggly_Test.log_constructor_quad_test" time="0.071"/>
+    <testcase name="Loggly_Test.loggly_add_quad_test" time="0.089"/>
+    <testcase name="Loggly_Test.log_constructor_double_test" time="0.075"/>
+    <testcase name="Loggly_Test.loggly_flush_test" time="0.129"/>
+    <testcase name="Loggly_Test.loggly_flush_empty_test" time="0.129"/>
+    <testcase name="Loggly_Test.loggly_constructor_empty_test" time="0.093"/>
+    <testcase name="Loggly_Test.loggly_add_triple_test" time="0.087"/>
+    <testcase name="Loggly_Test.loggly_singleLog_double_cache_test" time="0.155"/>
+    <testcase name="Loggly_Test.loggly_singleLog_double_noCache_test" time="0.13"/>
+    <testcase name="Loggly_Test.loggly_singleLog_double_noBatch_test" time="0.156"/>
+    <testcase name="Loggly_Test.loggly_singleLog_exception_noCache_test" time="0.161"/>
+    <testcase name="Loggly_Test.loggly_singleLog_exception_noBatch_test" time="0.148"/>
+    <testcase name="Loggly_Test.loggly_singleLog_exception_cache_test" time="0.12"/>
+    <testcase name="Loggly_Test.loggly_singleLog_exception_test" time="0.159"/>
+    <testcase name="Loggly_Test.loggly_singleLog_quad_cache_test" time="0.153"/>
+    <testcase name="Loggly_Test.loggly_singleLog_quad_noBatch_test" time="0.137"/>
+    <testcase name="Loggly_Test.loggly_singleLog_quad_noCache_test" time="0.118"/>
+    <testcase name="Loggly_Test.loggly_singleLog_quint_noCache_test" time="0.121"/>
+    <testcase name="Loggly_Test.loggly_singleLog_quint_noBatch_test" time="0.128"/>
+    <testcase name="Loggly_Test.loggly_singleLog_quint_cache_test" time="0.149"/>
+    <testcase name="Loggly_Test.loggly_singleLog_single_cache_test" time="0.133"/>
+    <testcase name="Loggly_Test.loggly_singleLog_single_noCache_test" time="0.215"/>
+    <testcase name="Loggly_Test.loggly_singleLog_single_noBatch_test" time="0.163"/>
+    <testcase name="Loggly_Test.loggly_singleLog_triple_cache_cache_test" time="0.186"/>
+    <testcase name="Loggly_Test.loggly_singleLog_triple_cache_noBatch_test" time="0.172"/>
+    <testcase name="Loggly_Test.loggly_singleLog_triple_cache_noCache_test" time="0.141"/>
+    <testcase name="Loggly_Test.loggly_singleLog_triple_level_cache_test" time="0.11"/>
+    <testcase name="Loggly_Test.loggly_singleLog_triple_level_noBatch_test" time="0.142"/>
+    <testcase name="Loggly_Test.loggly_singleLog_triple_level_noCache_test" time="0.234"/>
+    <testcase name="Loggly_Test.settingName_default_test" time="0.058"/>
+    <testcase name="Loggly_Test.settingName_set_test" time="0.089"/>
+    <testcase name="Loggly_Test.settings_test" time="0.127"/>
+  </testsuite>
+  <testsuite name="LoginController_TEST" time="0.286">
+    <testcase name="LoginController_TEST.testLogin" time="0.286"/>
+    <testcase name="LoginController_TEST.testSetPassword" time="0.117"/>
+    <testcase name="LoginController_TEST.testPageFwd" time="0.148"/>
+  </testsuite>
+  <testsuite name="PortalUser_TEST" time="0.076">
+    <testcase name="PortalUser_TEST.test_method_one" time="0.076"/>
+  </testsuite>
+  <testsuite name="Progress_Actions_TEST" time="0.076">
+    <testcase name="Progress_Actions_TEST.testRetrieve" time="0.076"/>
+  </testsuite>
+  <testsuite name="QuestionResponseGroupHandler_TEST" time="0.062">
+    <testcase name="QuestionResponseGroupHandler_TEST.itShould" time="0.062"/>
+  </testsuite>
+  <testsuite name="PostInstallClassTest" time="0.759">
+    <testcase name="PostInstallClassTest.test" time="0.759"/>
+  </testsuite>
+  <testsuite name="REST_DataUtils_TEST" time="0.547">
+    <testcase name="REST_DataUtils_TEST.testDoPostPut" time="0.547"/>
+  </testsuite>
+  <testsuite name="REST_sfbug_TEST" time="0.046">
+    <testcase name="REST_sfbug_TEST.checkOrder" time="0.046"/>
+  </testsuite>
+  <testsuite name="SL_Test_Reciprocal" time="0.062">
+    <testcase name="SL_Test_Reciprocal.testAffiliations" time="0.062"/>
+  </testsuite>
+  <testsuite name="SObjectDataLoaderTest" time="2.057">
+    <testcase name="SObjectDataLoaderTest.deserializingObjectsWithSelfRefernces" time="2.057"/>
+    <testcase name="SObjectDataLoaderTest.deserializingObjectsWithSelfReferncesLevel2" time="1.424"/>
+    <testcase name="SObjectDataLoaderTest.deserializingObjectsWithoutSelfRefernces" time="0.854"/>
+    <testcase name="SObjectDataLoaderTest.processUnorderedRecordsinJsonTest" time="0.345"/>
+    <testcase name="SObjectDataLoaderTest.reportLimitExceptions" time="0.721"/>
+    <testcase name="SObjectDataLoaderTest.serializeIdWithDifferentSObjectTypes" time="1.409"/>
+    <testcase name="SObjectDataLoaderTest.shouldNotTryToInsertRecordType" time="0.095"/>
+    <testcase name="SObjectDataLoaderTest.testAutoConfigured" time="0.608"/>
+    <testcase name="SObjectDataLoaderTest.testManuallyConfigured" time="1.739"/>
+    <testcase name="SObjectDataLoaderTest.testUpsertDeserialize" time="1.16"/>
+  </testsuite>
+  <testsuite name="Tst_Tst" time="0.063">
+    <testcase name="Tst_Tst.test_trigger" time="0.063"/>
+  </testsuite>
+  <testsuite name="UnitConverter_TEST" time="0.068">
+    <testcase name="UnitConverter_TEST.conversions" time="0.068"/>
+  </testsuite>
+  <testsuite name="UserAPI_TEST" time="0.105">
+    <testcase name="UserAPI_TEST.addPinnedTracker" time="0.105"/>
+    <testcase name="UserAPI_TEST.authenticateHuman" time="0.085"/>
+    <testcase name="UserAPI_TEST.cancelForEvent" time="0.063"/>
+    <testcase name="UserAPI_TEST.deleteUserResponse" time="0.066"/>
+    <testcase name="UserAPI_TEST.enroll" time="0.085"/>
+    <testcase name="UserAPI_TEST.getActivePhaQuestionSetId" time="0.105"/>
+    <testcase name="UserAPI_TEST.getActivities" time="0.088"/>
+    <testcase name="UserAPI_TEST.getAgList" time="0.092"/>
+    <testcase name="UserAPI_TEST.getAllAgs" time="0.08"/>
+    <testcase name="UserAPI_TEST.getAllBadges" time="0.121"/>
+    <testcase name="UserAPI_TEST.getAllMetrics" time="0.075"/>
+    <testcase name="UserAPI_TEST.getAvailableActivities" time="0.084"/>
+    <testcase name="UserAPI_TEST.getCampaign" time="0.068"/>
+    <testcase name="UserAPI_TEST.getCampaignActivities" time="0.074"/>
+    <testcase name="UserAPI_TEST.getCampaignProgress" time="0.058"/>
+    <testcase name="UserAPI_TEST.getCampaignSections" time="0.069"/>
+    <testcase name="UserAPI_TEST.getCurrentIC" time="0.085"/>
+    <testcase name="UserAPI_TEST.getDashboardNotification" time="0.11"/>
+    <testcase name="UserAPI_TEST.getEnrollments" time="0.091"/>
+    <testcase name="UserAPI_TEST.getEvent" time="0.059"/>
+    <testcase name="UserAPI_TEST.getEventAppointments" time="0.054"/>
+    <testcase name="UserAPI_TEST.getEvents" time="0.074"/>
+    <testcase name="UserAPI_TEST.getEventsForUser" time="0.104"/>
+    <testcase name="UserAPI_TEST.getFilteredQuestionSet" time="0.081"/>
+    <testcase name="UserAPI_TEST.getHumanPublicToken" time="0.088"/>
+    <testcase name="UserAPI_TEST.getListViews" time="0.069"/>
+    <testcase name="UserAPI_TEST.getNewBadges" time="0.092"/>
+    <testcase name="UserAPI_TEST.getNotifications" time="0.074"/>
+    <testcase name="UserAPI_TEST.getPageLinks" time="0.073"/>
+    <testcase name="UserAPI_TEST.getPcForAccount" time="0.059"/>
+    <testcase name="UserAPI_TEST.getPhaReport" time="0.132"/>
+    <testcase name="UserAPI_TEST.getPinnedTrackers" time="0.112"/>
+    <testcase name="UserAPI_TEST.getPortalConfig" time="0.107"/>
+    <testcase name="UserAPI_TEST.getQuestionSet" time="0.059"/>
+    <testcase name="UserAPI_TEST.getQuickLinks" time="0.084"/>
+    <testcase name="UserAPI_TEST.getResponsesForMetric" time="0.08"/>
+    <testcase name="UserAPI_TEST.getRiskCategoryAgs" time="0.124"/>
+    <testcase name="UserAPI_TEST.getRiskCategoryAgsForContact" time="0.063"/>
+    <testcase name="UserAPI_TEST.getTeam" time="0.151"/>
+    <testcase name="UserAPI_TEST.getUserResponse" time="0.079"/>
+    <testcase name="UserAPI_TEST.joinTeam" time="0.066"/>
+    <testcase name="UserAPI_TEST.leaveTeam" time="0.066"/>
+    <testcase name="UserAPI_TEST.putTeam" time="0.07"/>
+    <testcase name="UserAPI_TEST.putUserResponse" time="0.128"/>
+    <testcase name="UserAPI_TEST.removePinnedTracker" time="0.111"/>
+    <testcase name="UserAPI_TEST.searchFood" time="0.071"/>
+    <testcase name="UserAPI_TEST.signupForEvent" time="0.06"/>
+    <testcase name="UserAPI_TEST.userFilteredCampaigns" time="0.082"/>
+    <testcase name="UserAPI_TEST.userFilteredCampaignsForContact" time="0.088"/>
+    <testcase name="UserAPI_TEST.userFilteredQuestionSets" time="0.096"/>
+    <testcase name="UserAPI_TEST.userICProgress" time="0.081"/>
+  </testsuite>
+  <testsuite name="UserResponseHandler_TEST" time="2.644">
+    <testcase name="UserResponseHandler_TEST.testMappingTrigger" time="2.644"/>
+    <testcase name="UserResponseHandler_TEST.testQuestionResponseGroups" time="1.963"/>
+  </testsuite>
+  <testsuite name="WellnessController_TEST" time="0.117">
+    <testcase name="WellnessController_TEST.campaigns" time="0.117"/>
+  </testsuite>
+  <testsuite name="WellnessEventAppointmentHandler_TEST" time="1.206">
+    <testcase name="WellnessEventAppointmentHandler_TEST.testWEALocale" time="1.206"/>
+  </testsuite>
+  <testsuite name="WellnessEventHandler_TEST" time="1.252">
+    <testcase name="WellnessEventHandler_TEST.testWEABulkCreated" time="1.252"/>
+  </testsuite>
+  <testsuite name="QuestionResponseHandler_TEST" time="1990">
+    <testcase name="QuestionResponseHandler_TEST.itShould" time="1.99">
+      <failure>System.AssertException: Assertion Failed:  Then Progress points should be 5: Expected: 5, Actual: 0
+Class.QuestionResponseHandler_TEST.itShould: line 116, column 1</failure>
+    </testcase>
+  </testsuite>
+</testsuites>
