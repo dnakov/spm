@@ -28,7 +28,8 @@ var xslt = require('./xslt.js')
     'runTests',
     'singlePackage',
     'allowMissingFiles',
-    'runPackagedTestsOnly'
+    'runPackagedTestsOnly',
+    'testLevel'
   ]
 function getDeployOpts(o) {
     var opts = {}
