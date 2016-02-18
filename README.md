@@ -16,7 +16,8 @@
     		* `--purgeOnDelete` -- salesforce option
       		* `--rollbackOnError` -- salesforce option
     		* `--runAllTests` -- salesforce option
-    		* `--runTests` -- salesforce option
+            * `--testLevel` -- salesforce option
+            * `--runTests` -- salesforce option
     		* `--singlePackage` -- salesforce option
     		* `--allowMissingFiles` -- salesforce option
     		* `--runPackagedTestsOnly` -- salesforce option
