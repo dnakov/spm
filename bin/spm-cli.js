@@ -87,7 +87,6 @@ program
         spm.describeMetadata(options, function(er, r) {
           if(er) return xit(er);
           spm.transform({ root: options.root, metadataObjects: r.result.metadataObjects, apiVersion: options.apiVersion}, z, function(er, zip) {
-            fs.writeFileSync('/tmp/spm.zip', zip);
             if(er) return xit(er);
             options.options = options;
             console.log('Deploying...')
