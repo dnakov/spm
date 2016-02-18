@@ -1,80 +1,80 @@
 #!/usr/bin/env node
 program = require("commander")
 spm = require('../methods.js')
-fs = require('fs')
-readdirp = require('readdirp')
-JSZip = require('jszip')
-path = require('path')
-junit = require('sf-junit-reporter')
-// program
-//  .option('-m, --manual', 'true')
-//    .option('--printPackageXml, --printPackageXml', 'true')
-//    .option('--checkOnly, --checkOnly', 'true')
-//    .option('--ignoreWarnings, --ignoreWarnings', 'true')
-//    .option('--performRetrieve, --performRetrieve', 'true')
-//    .option('--purgeOnDelete, --purgeOnDelete', 'true')
-//    .option('--rollbackOnError, --rollbackOnError', 'true')
-//    .option('--runAllTests, --runAllTests', 'true')
-//    .option('--runTests, --runTests', 'true')
-//    .option('--singlePackage, --singlePackage', 'true')
-//    .option('--allowMissingFiles, --allowMissingFiles', 'true')
-//    .option('--autoUpdatePackage, --autoUpdatePackage', 'true')
-//    .option('--runPackagedTestsOnly, --runPackagedTestsOnly', 'true')
-//    .option('--useDefaultMetadata, --useDefaultMetadata', 'true')
-//    .option('--usePackageXml, --usePackageXml [usePackageXml]', 'true')
-//    .option('--apiVersion, --apiVersion [apiVersion]', 'true', '33.0')
-//    .option('-u, --username [username]', 'true', '')
-//    .option('-p, --password [password]', 'true', '')
-//    .option('-url, --loginUrl [loginUrl]', 'true', 'https://login.salesforce.com')
-//    .option('-f, --filter [value]', 'true')
+  fs = require('fs')
+  readdirp = require('readdirp')
+  JSZip = require('jszip')
+  path = require('path')
+  junit = require('sf-junit-reporter')
+	// program
+	// 	.option('-m, --manual', 'true')
+  //    .option('--printPackageXml, --printPackageXml', 'true')
+  //    .option('--checkOnly, --checkOnly', 'true')
+  //    .option('--ignoreWarnings, --ignoreWarnings', 'true')
+  //    .option('--performRetrieve, --performRetrieve', 'true')
+  //    .option('--purgeOnDelete, --purgeOnDelete', 'true')
+  //    .option('--rollbackOnError, --rollbackOnError', 'true')
+  //    .option('--runAllTests, --runAllTests', 'true')
+  //    .option('--runTests, --runTests', 'true')
+  //    .option('--singlePackage, --singlePackage', 'true')
+  //    .option('--allowMissingFiles, --allowMissingFiles', 'true')
+  //    .option('--autoUpdatePackage, --autoUpdatePackage', 'true')
+  //    .option('--runPackagedTestsOnly, --runPackagedTestsOnly', 'true')
+  //    .option('--useDefaultMetadata, --useDefaultMetadata', 'true')
+  //    .option('--usePackageXml, --usePackageXml [usePackageXml]', 'true')
+  //    .option('--apiVersion, --apiVersion [apiVersion]', 'true', '33.0')
+  //    .option('-u, --username [username]', 'true', '')
+  //    .option('-p, --password [password]', 'true', '')
+  //    .option('-url, --loginUrl [loginUrl]', 'true', 'https://login.salesforce.com')
+  //    .option('-f, --filter [value]', 'true')	
 
-program
-  .command('sflogin')
-  .description('login to salesforce')
-  .option('-m, --manual', 'no prompts, expects options to be passed in')
-  .option('--apiVersion, --apiVersion [apiVersion]', 'api version', '33.0')
-  .option('-u, --username [username]', 'username', '')
-  .option('-p, --password [password]', 'password', '')
-  .option('-url, --endpointUrl [endpointUrl]', 'login url', 'https://login.salesforce.com')
-  .action(function(options) {
-    spm.login(options, function(er, conn) {
-      if(er != null) process.exit(1)
+  program
+    .command('sflogin')    
+    .description('login to salesforce')
+    .option('-m, --manual', 'no prompts, expects options to be passed in')
+    .option('--apiVersion, --apiVersion [apiVersion]', 'api version', '33.0')
+    .option('-u, --username [username]', 'username', '')
+    .option('-p, --password [password]', 'password', '')
+    .option('-url, --endpointUrl [endpointUrl]', 'login url', 'https://login.salesforce.com')
+    .action(function(options) {
+    	  spm.login(options, function(er, conn) {
+    		if(er != null) process.exit(1)
+    	})
     })
-  })
 
-
-program
-  .command('deploy')
-  .description('asks for what to deploy, where and then deploys')
-  .option('--printPackageXml, --printPackageXml', 'generates a package.xml from existing folders')
-  .option('--checkOnly, --checkOnly', 'read sf docs')
-  .option('--ignoreWarnings, --ignoreWarnings', 'read sf docs')
-  .option('--performRetrieve, --performRetrieve', 'read sf docs')
-  .option('--purgeOnDelete, --purgeOnDelete', 'read sf docs')
-  .option('--rollbackOnError, --rollbackOnError', 'read sf docs')
-  .option('--runAllTests, --runAllTests', 'read sf docs')
+  
+  program    
+    .command('deploy')
+    .description('asks for what to deploy, where and then deploys')
+    .option('--printPackageXml, --printPackageXml', 'generates a package.xml from existing folders')
+    .option('--checkOnly, --checkOnly', 'read sf docs')
+    .option('--ignoreWarnings, --ignoreWarnings', 'read sf docs')
+    .option('--performRetrieve, --performRetrieve', 'read sf docs')
+    .option('--purgeOnDelete, --purgeOnDelete', 'read sf docs')
+    .option('--rollbackOnError, --rollbackOnError', 'read sf docs')
+    .option('--runAllTests, --runAllTests', 'read sf docs')
   .option('--testLevel, --testLevel [testLevel]', 'read sf docs')
-  .option('--runTests, --runTests [runTests]', 'read sf docs', list)
-  .option('--no-singlePackage, --no-singlePackage', 'read sf docs')
-  .option('--allowMissingFiles, --allowMissingFiles', 'read sf docs')
-  .option('--autoUpdatePackage, --autoUpdatePackage', 'read sf docs')
-  .option('--runPackagedTestsOnly, --runPackagedTestsOnly', 'read sf docs')
-  .option('--useDefaultMetadata, --useDefaultMetadata', 'doesnt ask the server for metadata')
-  .option('--usePackageXml, --usePackageXml [usePackageXml]', 'specify existing package.xml file [usePackageXml]')
-  .option('--apiVersion, --apiVersion [apiVersion]', 'api version', '33.0')
-  .option('-u, --username <username>', 'username', '')
-  .option('-p, --password <password>', 'password', '')
-  .option('-e, --endpointUrl <endpointUrl>', 'login url', 'https://login.salesforce.com')
-  .option('-f, --filter <value>', 'regex filter for files to deploy')
+    .option('--runTests, --runTests [runTests]', 'read sf docs', list)
+    .option('--no-singlePackage, --no-singlePackage', 'read sf docs')
+    .option('--allowMissingFiles, --allowMissingFiles', 'read sf docs')
+    .option('--autoUpdatePackage, --autoUpdatePackage', 'read sf docs')
+    .option('--runPackagedTestsOnly, --runPackagedTestsOnly', 'read sf docs')
+    .option('--useDefaultMetadata, --useDefaultMetadata', 'doesnt ask the server for metadata')
+    .option('--usePackageXml, --usePackageXml [usePackageXml]', 'specify existing package.xml file [usePackageXml]')
+    .option('--apiVersion, --apiVersion [apiVersion]', 'api version', '33.0')
+    .option('-u, --username <username>', 'username', '')
+    .option('-p, --password <password>', 'password', '')
+    .option('-e, --endpointUrl <endpointUrl>', 'login url', 'https://login.salesforce.com')
+    .option('-f, --filter <value>', 'regex filter for files to deploy')
   .option('-r, --root <root>', 'regex filter for files to deploy')
   .option('-F, --singleFile [singleFile]', 'single file')
-  .option('-j, --junit [junit]', 'junit results filename out')
-  .option('--fullLog', '--fullLog', 'output the complete deployment log')
-  .option('--checkInterval, --checkInterval <checkInterval>', 'deploy check interval', 2000)
-  .action(function(op) {
+    .option('-j, --junit [junit]', 'junit results filename out')	
+    .option('--fullLog', '--fullLog', 'output the complete deployment log')
+    .option('--checkInterval, --checkInterval <checkInterval>', 'deploy check interval', 2000)
+    .action(function(op) {
 
     var options = getOptions(op)
-    var statusInterval
+      var statusInterval
 
     if(options.runAllTests && options.testLevel == null) options.testLevel = 'RunLocalTests'
 
@@ -86,17 +86,17 @@ program
         options.sessionId = conn.result.sessionId
         spm.describeMetadata(options, function(er, r) {
           if(er) return xit(er);
-          spm.transform({ root: options.root, metadataObjects: r.result.metadataObjects, apiVersion: options.apiVersion}, z, function(er, zip) {
+                spm.transform({ root: options.root, metadataObjects: r.result.metadataObjects, apiVersion: options.apiVersion}, z, function(er, zip) {
             if(er) return xit(er);
-            options.options = options;
-            console.log('Deploying...')
-            spm.deploy(options, zip.toString('base64'), function(er, res) {
+                    options.options = options;
+                  console.log('Deploying...')
+                    spm.deploy(options, zip.toString('base64'), function(er, res) {
               if(er) return xit(er);
-              statusInterval = setInterval(function() {
-                spm.checkDeployStatus({sessionId: options.sessionId, endpointUrl: options.endpointUrl, options: { checkAsyncStatus: res.result.id, includeDetails: true }}, function(er, r) {
-                  if(er || r.result.done === 'true') clearTimeout(statusInterval);
+                        statusInterval = setInterval(function() {
+                          spm.checkDeployStatus({sessionId: options.sessionId, endpointUrl: options.endpointUrl, options: { checkAsyncStatus: res.result.id, includeDetails: true }}, function(er, r) {
+                            if(er || r.result.done === 'true') clearTimeout(statusInterval);
                   if(er) return xit(er);
-                  if(r.result.done === 'true') {
+                              if(r.result.done === 'true') {
                     if(r.result.success === 'false') {
                       r.result.details.componentFailures && Array.prototype.concat.call([],r.result.details.componentFailures).map(function(e) {
                         console.log(e.fullName + ': ' + e.problem)
@@ -108,31 +108,31 @@ program
                     } else if(r.result.success === 'true') {
                         console.log('Success!')
                     }
-                    
+                                      
                     if(options.fullLog) console.log(JSON.stringify(r.result, null, 2))
                     if(options.junit) fs.writeFileSync(op.junit, junit(r.result))
-                    process.exit(r.result.success !== 'true')
-                  }
+                                  process.exit(r.result.success !== 'true')
+                              }
+                          })
+                        }, op.checkInterval)
+                        
+                    })
                 })
-              }, op.checkInterval)
-
+                
             })
-          })
-
         })
       })
+      /*  -   	spm.deploy(options, function(er, results) { */
+      /*     		if(er != null) process.exit(1) */
+      /*     	}) */
     })
-    /*  -     spm.deploy(options, function(er, results) { */
-    /*        if(er != null) process.exit(1) */
-    /*      }) */
-  })
-
-program
-  .command('retrieve')
-  .description('retrieve metadata')
-  .option('--apiVersion, --apiVersion [apiVersion]', 'api version', '33.0')
-  .option('-u, --username [username]', 'username', '')
-  .option('-p, --password [password]', 'password', '')
+  
+  program
+    .command('retrieve')    
+    .description('retrieve metadata')
+    .option('--apiVersion, --apiVersion [apiVersion]', 'api version', '33.0')
+    .option('-u, --username [username]', 'username', '')
+    .option('-p, --password [password]', 'password', '')
   .option('-url, --endpointUrl [endpointUrl]', 'login url', 'https://login.salesforce.com')
   .option('--specificFiles, --specificFiles [specificFiles]', 'read sf docs', list)
   .option('-m, --metadataObjects [metadataObjects]', 'read sf docs', listSpace)
@@ -185,21 +185,21 @@ program
                 } else {
                   console.log(f.asText())
                 }
-              })
+      })
             }
-          })
+    })
         }, op.checkInterval || 2000)
       })
-
+  
     })
   })
 
-// .action(function(cmd, options) {
-//  spm.commands.deploy(options)
-// })
-if (!process.argv.slice(2).length) {
-  program.outputHelp();
-}
+  // .action(function(cmd, options) {
+  // 	spm.commands.deploy(options)
+  // })
+  if (!process.argv.slice(2).length) {
+    program.outputHelp();
+  }
 
 program.parse(process.argv);
 
@@ -230,11 +230,11 @@ function zipLocalFiles(singleFile, root, fileFilter, callback) {
     if(fs.existsSync(singleFile + '-meta.xml')) zip.file((singleFile + '-meta.xml').replace(root, ''), fs.readFileSync(singleFile + '-meta.xml'))
     return callback(null, zip.file(singleFile.replace(root, ''), fs.readFileSync(singleFile)));
   }
-  readdirp({ root: root, fileFilter: fileFilter }, function(fileInfo) {
-    zip.file(fileInfo.path, fs.readFileSync(fileInfo.fullPath));
-  }, function() {
-    callback(null,zip)
-  })
+    readdirp({ root: root, fileFilter: fileFilter }, function(fileInfo) {
+        zip.file(fileInfo.path, fs.readFileSync(fileInfo.fullPath));
+    }, function() {
+      callback(null,zip)
+    })
 }
 function xit(er) {
   console.log(er)
