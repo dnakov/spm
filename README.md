@@ -1,7 +1,7 @@
 # SPM
 
 ## What it does
-It deploys to salesforce
+A command-line tool to deploy local metadata from a directory to a salesforce org using the salesforce metadata API.
 
 ## Bamboo Setup
 1. Configure the following variables:
