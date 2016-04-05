@@ -1,5 +1,8 @@
 # SPM
 
+## What it does
+It deploys to salesforce
+
 ## Bamboo Setup
 1. Configure the following variables:
 	* **username** (SF username)
@@ -35,4 +38,3 @@
 		* Arguments: `deploy --username ${bamboo.username} --password ${bamboo.password} --endpointUrl ${bamboo.endpointUrl} ${bamboo.deployOptions}`
 5. If setting up tests, add a **JUnit Parser** task to parse the junit file specified in the spm command
 	* Example: `**/tests.xml` (for when spm was run with --junit tests.xml)
-
