@@ -12,7 +12,8 @@ function processXSLTForFile(xslt, f) {
 		var tmpFileName = '/tmp/' + uuid()
 		fs.writeFile(tmpFileName, f.asNodeBuffer(), function() {
 			exec('xsltproc -o ' + tmpFileName + ' ' + xslt + ' ' + tmpFileName, function(err, stdout, stderr) {
-				fs.readFile(tmpFileName, function(er, file) {
+        console.log(arguments)
+        fs.readFile(tmpFileName, function(er, file) {
 					var obj = {
 						name: f.name,
 						file: file
@@ -120,11 +121,11 @@ function generatePackageXml(zipBuffer, metadataObjects, opts) {
 	var pkg = {}
 
 	Object.keys(jz.files).filter(function(f) {
-	  return f.lastIndexOf('/') !== -1 && f.indexOf('-meta.xml') === -1
+	  return f.lastIndexOf(path.sep) !== -1 && f.indexOf('-meta.xml') === -1
 	}).map(function(f) {
-    var arr = f.split('/')
+    var arr = f.split(path.sep)
     var dir = arr.shift()
-    var file = arr.join('/')
+    var file = arr.join(path.sep)
     var m = meta[dir]
     if(!m) return
     pkg[m.xmlName] = pkg[m.xmlName] || []
@@ -160,14 +161,14 @@ module.exports.transform = function(opts, zipBuffer, cb) {
 			var pkgxml = generatePackageXml(zipBuffer, opts.metadataObjects, opts)
 			zip.file('package.xml', pkgxml)
 	}
-
 	if(opts.xslt) {
 		processXSLT(zip, opts.xslt, function(er, z) {
 			if(er) return cb(er)
 			return cb(null, z.generate({type: 'nodebuffer'}))
 		})
-	} 
-	return cb(null, zip.generate({type: 'nodebuffer'}))
+	} else { 
+	  return cb(null, zip.generate({type: 'nodebuffer'}))
+  }
 }
 
 module.exports.getjz = getjz
