@@ -64,14 +64,14 @@ function removeRoot(zipBuffer, root) {
 	convert = zip != zipBuffer
 
 	if(root) {
-		root = root.substring(root.length - 1) === '/' ? root : root + '/'
+		root = root.substring(root.length - 1) === path.sep ? root : root + path.sep
 
 		var folders = zip.folder(new RegExp(root + '$'))
 		var max = 999
 		var root2
 		folders.map(function(fo) {
-			if(fo.name.split('/').filter(function(el) { return el.length > 0}).length < max) {
-				max = fo.name.split('/').length
+			if(fo.name.split(path.sep).filter(function(el) { return el.length > 0}).length < max) {
+				max = fo.name.split(path.sep).length
 				root2 = fo.name
 			}
 		})
@@ -121,11 +121,11 @@ function generatePackageXml(zipBuffer, metadataObjects, opts) {
 	var pkg = {}
 
 	Object.keys(jz.files).filter(function(f) {
-	  return f.lastIndexOf(path.sep) !== -1 && f.indexOf('-meta.xml') === -1
+	  return f.lastIndexOf('/') !== -1 && f.indexOf('-meta.xml') === -1
 	}).map(function(f) {
-    var arr = f.split(path.sep)
+    var arr = f.split('/')
     var dir = arr.shift()
-    var file = arr.join(path.sep)
+    var file = arr.join('/')
     var m = meta[dir]
     if(!m) return
     pkg[m.xmlName] = pkg[m.xmlName] || []
@@ -154,11 +154,12 @@ module.exports.transform = function(opts, zipBuffer, cb) {
 	if(opts === false) return cb(null, zipBuffer)
 	
 	var zip = getjz(zipBuffer)
-
+	//console.log(zip.files)
 	if(opts.root !== false) zip = removeRoot(zip, opts.root)
-
+ 
 	if(opts.metadataObjects) {
 			var pkgxml = generatePackageXml(zipBuffer, opts.metadataObjects, opts)
+			if(opts.printPackageXml) console.log(pkgxml)
 			zip.file('package.xml', pkgxml)
 	}
 	if(opts.xslt) {

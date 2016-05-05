@@ -88,6 +88,7 @@ spm = require('../methods.js')
 
       zipLocalFiles(options.singleFile, options.root, options.filter, function(er, z) {
         if(er) return xit(er);
+        
         spm.login(options, function(er, conn) {
           if(er) return xit(er);
           options.endpointUrl = conn.result.metadataServerUrl
@@ -101,7 +102,7 @@ spm = require('../methods.js')
             
               spm.describeMetadata(options, function(er, r) {
                 if(er) return xit(er);
-                spm.transform({ xslt: options.xsltMap, xsltParams: options.xsltParams, root: options.root, metadataObjects: r.result.metadataObjects, apiVersion: options.apiVersion}, z, function(er, zip) {
+                spm.transform({ xslt: options.xsltMap, xsltParams: options.xsltParams, root: options.root, metadataObjects: r.result.metadataObjects, apiVersion: options.apiVersion, printPackageXml: options.printPackageXml}, z, function(er, zip) {
                   if(er) return xit(er);
                   options.options = options;
                   deploy(options, zip)
@@ -260,7 +261,8 @@ function zipLocalFiles(singleFile, root, fileFilter, callback) {
     return callback(null, zip.file(singleFile.replace(root, ''), fs.readFileSync(singleFile)));
   }
     readdirp({ root: root, fileFilter: fileFilter }, function(fileInfo) {
-        zip.file(fileInfo.path, fs.readFileSync(fileInfo.fullPath));
+        // jszip wants posix paths
+        zip.file(fileInfo.path.replace(path.sep,'/'), fs.readFileSync(fileInfo.fullPath));
     }, function() {
       callback(null,zip.generate({type: 'nodebuffer'}))
     })
