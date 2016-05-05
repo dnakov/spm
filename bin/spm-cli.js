@@ -261,8 +261,8 @@ function zipLocalFiles(singleFile, root, fileFilter, callback) {
     return callback(null, zip.file(singleFile.replace(root, ''), fs.readFileSync(singleFile)));
   }
     readdirp({ root: root, fileFilter: fileFilter }, function(fileInfo) {
-        // jszip wants posix paths
-        zip.file(fileInfo.path.replace(path.sep,'/'), fs.readFileSync(fileInfo.fullPath));
+        // jszip wants posix path
+        zip.file(fileInfo.path.split(path.sep).join('/'), fs.readFileSync(fileInfo.fullPath));
     }, function() {
       callback(null,zip.generate({type: 'nodebuffer'}))
     })
