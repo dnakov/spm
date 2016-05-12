@@ -67,7 +67,7 @@ spm = require('../methods.js')
     .option('-u, --username <username>', 'username', '')
     .option('-p, --password <password>', 'password', '')
     .option('-e, --endpointUrl <endpointUrl>', 'login url', 'https://login.salesforce.com')
-    .option('-f, --filter <value>', 'regex filter for files to deploy')
+    .option('-f, --filter [value]', 'regex filter for files to deploy', listSpace)
     .option('-r, --root <root>', 'regex filter for files to deploy')
     .option('-F, --singleFile [singleFile]', 'single file')
     .option('-j, --junit [junit]', 'junit results filename out')	
@@ -198,16 +198,14 @@ function deploy(options, zip) {
       }
       spm.retrieve(options, function(er, res) {
         if(er != null) process.exit(1)
-        statusInterval = setInterval(function() {
+              statusInterval = setInterval(function() {
           spm.checkRetrieveStatus({sessionId: options.sessionId, endpointUrl: options.endpointUrl, options: { asyncProcessId: res.result.id, includeZip: true }}, function(er, r) {
             if(er || r.result.done === 'true') clearTimeout(statusInterval);
             if(er) return xit(er)
             if(r.result.done === 'true') {
               var zip = new JSZip();
-              console.log(r.result)
               zip.load(new Buffer(r.result.zipFile, 'base64'))
               delete r.result.zipFile
-              console.log(JSON.stringify(r.result, null, 2))
               Object.keys(zip.files).map(function(k) {
                 f = zip.files[k]
               })
