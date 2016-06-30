@@ -69,7 +69,7 @@ spm = require('../methods.js')
     .option('-e, --endpointUrl <endpointUrl>', 'login url', 'https://login.salesforce.com')
     .option('-f, --filter [value]', 'regex filter for files to deploy', listSpace)
     .option('-r, --root <root>', 'regex filter for files to deploy')
-    .option('-F, --singleFile [singleFile]', 'single file')
+    .option('-F, --files [files]', 'files to deploy', list)
     .option('-j, --junit [junit]', 'junit results filename out')	
     .option('--fullLog', '--fullLog', 'output the complete deployment log')
     .option('--checkInterval, --checkInterval <checkInterval>', 'deploy check interval', 2000)
@@ -86,7 +86,7 @@ spm = require('../methods.js')
         })
       }
 
-      zipLocalFiles(options.singleFile, options.root, options.filter, function(er, z) {
+      zipLocalFiles(options.files, options.root, options.filter, function(er, z) {
         if(er) return xit(er);
         
         spm.login(options, function(er, conn) {
@@ -160,7 +160,7 @@ function deploy(options, zip) {
   .option('-url, --endpointUrl [endpointUrl]', 'login url', 'https://login.salesforce.com')
   .option('--specificFiles, --specificFiles [specificFiles]', 'read sf docs', list)
   .option('-m, --metadataObjects [metadataObjects]', 'read sf docs', listSpace)
-  .option('-F --singleFile [singleFile]', 'refresh local file')
+  .option('-F --files [files]', 'refresh local file')
     .option('-O --outputZip [outputZip]', 'zip file name for output')
   .option('-P --packageNames [packageNames]', 'package names')
   .option('--no-singlePackage, --no-singlePackage', 'read sf docs')
@@ -235,10 +235,12 @@ function getOptions(op) {
   var options = op.opts();
   if(op.junit === true) options.junit = 'junit.xml';
 
-  if(options.singleFile) {
-    var p = path.resolve(options.singleFile, '');
-    options.root = p.split(path.sep + 'src' + path.sep )[0] + path.sep + 'src' + path.sep;
-    options.singleFile = p;
+  if(options.files) {
+    var p = path.resolve(options.files[0], '');
+    options.root = options.root || p.split(path.sep + 'src' + path.sep )[0] + path.sep + 'src' + path.sep;
+    options.files = options.files.filter(function(f) { return f.length > 0 }).map(function(fPath) {
+      return path.resolve(fPath, '');
+    })
   }
 
   if(!options.username || !options.password) {
@@ -252,11 +254,15 @@ function getOptions(op) {
   return options
 }
 
-function zipLocalFiles(singleFile, root, fileFilter, callback) {
+function zipLocalFiles(files, root, fileFilter, callback) {
   var zip = new JSZip()
-  if(singleFile) {
-    if(fs.existsSync(singleFile + '-meta.xml')) zip.file((singleFile + '-meta.xml').replace(root, ''), fs.readFileSync(singleFile + '-meta.xml'))
-    return callback(null, zip.file(singleFile.replace(root, ''), fs.readFileSync(singleFile)));
+  if(files) {
+    files.map( function(singleFile) {
+      if(fs.existsSync(singleFile + '-meta.xml')) zip.file((singleFile + '-meta.xml').replace(root, ''), fs.readFileSync(singleFile + '-meta.xml'));
+      zip.file(singleFile.replace(root, ''), fs.readFileSync(singleFile));
+    })
+
+    return callback(null, zip);
   }
     readdirp({ root: root, fileFilter: fileFilter }, function(fileInfo) {
         // jszip wants posix path
