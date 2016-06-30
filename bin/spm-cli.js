@@ -235,12 +235,14 @@ function getOptions(op) {
   var options = op.opts();
   if(op.junit === true) options.junit = 'junit.xml';
 
-  if(options.files) {
+  if(options.files && options.files.length > 0) {
     var p = path.resolve(options.files[0], '');
     options.root = options.root || p.split(path.sep + 'src' + path.sep )[0] + path.sep + 'src' + path.sep;
     options.files = options.files.filter(function(f) { return f.length > 0 }).map(function(fPath) {
       return path.resolve(fPath, '');
     })
+  } else {
+    options.files = null
   }
 
   if(!options.username || !options.password) {
