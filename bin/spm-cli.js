@@ -105,6 +105,7 @@ spm = require('../methods.js')
                 spm.transform({ xslt: options.xsltMap, xsltParams: options.xsltParams, root: options.root, metadataObjects: r.result.metadataObjects, apiVersion: options.apiVersion, printPackageXml: options.printPackageXml}, z, function(er, zip) {
                   if(er) return xit(er);
                   options.options = options;
+                  console.log(zip)
                   deploy(options, zip)
                   
                 })
@@ -234,10 +235,10 @@ program.parse(process.argv);
 function getOptions(op) {
   var options = op.opts();
   if(op.junit === true) options.junit = 'junit.xml';
-
+  console.log(options.files)
   if(options.files && options.files.length > 0) {
     var p = path.resolve(options.files[0], '');
-    options.root = p.split(path.sep + (options.root || 'src') + path.sep )[0] + path.sep + (options.root || 'src') + path.sep;
+    options.root = path.resolve(options.root || 'src') + '/'//p.split(path.sep + (options.root || 'src') + path.sep )[0] + path.sep + (options.root || 'src') + path.sep;
     options.files = options.files.filter(function(f) { return f.length > 0 }).map(function(fPath) {
       return path.resolve(fPath, '');
     })
