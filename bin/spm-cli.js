@@ -237,7 +237,7 @@ function getOptions(op) {
 
   if(options.files && options.files.length > 0) {
     var p = path.resolve(options.files[0], '');
-    options.root = options.root || p.split(path.sep + 'src' + path.sep )[0] + path.sep + 'src' + path.sep;
+    options.root = p.split(path.sep + (options.root || 'src') + path.sep )[0] + path.sep + (options.root || 'src') + path.sep;
     options.files = options.files.filter(function(f) { return f.length > 0 }).map(function(fPath) {
       return path.resolve(fPath, '');
     })
