@@ -5,7 +5,6 @@ spm = require('../methods.js')
   readdirp = require('readdirp')
   JSZip = require('jszip')
   path = require('path')
-  junit = require('sf-junit-reporter')
 	// program
 	// 	.option('-m, --manual', 'true')
   //    .option('--printPackageXml, --printPackageXml', 'true')
@@ -70,7 +69,6 @@ spm = require('../methods.js')
     .option('-f, --filter [value]', 'regex filter for files to deploy', listSpace)
     .option('-r, --root <root>', 'regex filter for files to deploy')
     .option('-F, --files [files]', 'files to deploy', list)
-    .option('-j, --junit [junit]', 'junit results filename out')	
     .option('--fullLog', '--fullLog', 'output the complete deployment log')
     .option('--checkInterval, --checkInterval <checkInterval>', 'deploy check interval', 2000)
     .action(function(op) {
@@ -143,7 +141,6 @@ function deploy(options, zip) {
           }
           
           if(options.fullLog) console.log(JSON.stringify(r.result, null, 2))
-          if(options.junit) fs.writeFileSync(options.junit, junit(r.result))
           process.exit(r.result.success !== 'true')
         }
       })
@@ -234,7 +231,6 @@ program.parse(process.argv);
 
 function getOptions(op) {
   var options = op.opts();
-  if(op.junit === true) options.junit = 'junit.xml';
   console.log(options.files)
   if(options.files && options.files.length > 0) {
     var p = path.resolve(options.files[0], '');
